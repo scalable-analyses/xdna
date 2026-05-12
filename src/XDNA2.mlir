@@ -25,7 +25,7 @@ module {
       }
       aie.end
     } {link_with = "tensor_kernel_64x96x64_bfp16_bfp16_fp32.o"}
-    aiex.runtime_sequence(%arg0: memref<4xi8>) {
+    aie.runtime_sequence(%arg0: memref<4xi8>) {
       aiex.npu.dma_memcpy_nd(%arg0[0, 0, 0, 0][1, 1, 1, 4][0, 0, 0, 1]) {id = 0 : i64, metadata = @object_fifo_in} : memref<4xi8>
       aiex.npu.dma_memcpy_nd(%arg0[0, 0, 0, 0][1, 1, 1, 4][0, 0, 0, 1]) {id = 1 : i64, metadata = @object_fifo_out} : memref<4xi8>
       aiex.npu.dma_wait {symbol = @object_fifo_out}
